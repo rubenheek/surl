@@ -1,0 +1,17 @@
+name = "surl"
+workers_dev = true
+
+main = "build/worker/shim.mjs"
+compatibility_date = "2022-01-20"
+
+[durable_objects]
+bindings = [
+    { name = "SHORT_URL", class_name = "ShortUrl" }
+]
+
+[[migrations]]
+tag = "v0.1"
+new_classes = ["SHORT_URL"]
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
